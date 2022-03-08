@@ -69,22 +69,12 @@ class ProductRepository {
     }
 
     async getProductsByCategory(payload) {
-        const reponse = await Repository.get(
-            `${baseUrl}/product-categories?slug=${payload}`
-        )
-            .then((response) => {
-                if (response.data) {
-                    if (response.data.length > 0) {
-                        return response.data[0];
-                    }
-                } else {
-                    return null;
-                }
-            })
-            .catch(() => {
-                return null;
-            });
-        return reponse;
+        const responseData = await axios.get(`https://herbalbackend.herokuapp.com/api/products/product_category/${payload}`)
+        .then((response) => {
+            return response.data;
+        })
+            .catch((error) => ({ error: JSON.stringify(error) }));
+        return responseData.data;
     }
 
     async getProductsByBrand(payload) {

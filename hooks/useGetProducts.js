@@ -36,6 +36,20 @@ export default function useGetProducts() {
             }
         },
 
+        getProductsDealOfDay: async () => {
+            setLoading(true);
+            const responseData = await axios.get(`https://herbalbackend.herokuapp.com/api/products`);
+            if (responseData.data) {
+                setProductItems(responseData.data);
+                setTimeout(
+                    function () {
+                        setLoading(false);
+                    }.bind(this),
+                    250
+                );
+            }
+        },
+
         getProductsByCategory: async (payload) => {
             setLoading(true);
             const responseData = await getProductsByCategoriesHelper(payload);

@@ -32,7 +32,6 @@ const HeaderActions = ({ ecomerce, auth }) => {
                 </a>
             </Link>
             <MiniCart />
-            {headerAuthView}
         </div>
     );
 };

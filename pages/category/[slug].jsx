@@ -4,6 +4,8 @@ import WidgetShopCategories from '~/components/shared/widgets/WidgetShopCategori
 import WidgetShopBrands from '~/components/shared/widgets/WidgetShopBrands';
 import WidgetShopFilterByPriceRange from '~/components/shared/widgets/WidgetShopFilterByPriceRange';
 import ProductRepository from '~/repositories/ProductRepository';
+import ShopItems_copy from '~/components/partials/shop/ShopItems_copy';
+
 import { useRouter } from 'next/router';
 import ProductItems from '~/components/partials/product/ProductItems';
 import PageContainer from '~/components/layouts/PageContainer';
@@ -60,7 +62,7 @@ const ProductCategoryScreen = () => {
     if (!loading) {
         if (category && category.products.length > 0) {
             productItemsViews = (
-                <ProductItems columns={4} products={category.products} />
+                 <ShopItems_copy categoryId={slug} columns={6} pageSize={18} />
             );
         } else {
             productItemsViews = <p>No Product found</p>;
@@ -80,19 +82,22 @@ const ProductCategoryScreen = () => {
                     <div className="ps-layout--shop ps-shop--category">
                         <div className="ps-layout__left">
                             <WidgetShopCategories />
-                            <WidgetShopBrands />
-                            <WidgetShopFilterByPriceRange />
+                            {/* <WidgetShopBrands />
+                            <WidgetShopFilterByPriceRange /> */}
                         </div>
                         <div className="ps-layout__right">
                             <h3 className="ps-shop__heading">
                                 {category && category.name}
                             </h3>
-                            {productItemsViews}
+                            {/* {productItemsViews} */}
+                 <ShopItems_copy categoryId={slug} columns={6} pageSize={18} />
+
+                 {/* <ShopItems columns={6} pageSize={18} /> */}
+
                         </div>
                     </div>
                 </div>
             </div>
-            <Newletters layout="container" />
         </PageContainer>
     );
 };

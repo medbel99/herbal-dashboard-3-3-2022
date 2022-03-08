@@ -9,10 +9,10 @@ import { generateTempArray } from '~/utilities/common-helpers';
 import useGetProducts from '~/hooks/useGetProducts';
 
 const HomeDefaultDealOfDay = ({ collectionSlug }) => {
-    const { productItems, loading, getProductsByCollection } = useGetProducts();
+    const { productItems, loading, getProductsDealOfDay } = useGetProducts();
 
     useEffect(() => {
-        getProductsByCollection(collectionSlug);
+        getProductsDealOfDay(collectionSlug);
     }, [collectionSlug]);
 
     // Views

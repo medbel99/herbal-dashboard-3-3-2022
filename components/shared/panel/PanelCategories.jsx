@@ -1,49 +1,35 @@
-import React, { Component } from 'react';
+import React, { useEffect,useState } from 'react';
 import { Menu } from 'antd';
 import Link from 'next/link';
 import categories from '../../../public/static/data/static-categories.json';
+import axios from "axios";
 
 const { SubMenu } = Menu;
 
-class PanelCategories extends Component {
-    constructor(props) {
-        super(props);
+const PanelCategories = ()=> {
+ 
+    useEffect(() => {
+        getAllCategory();
+      },[]);
+    const [data,setData]= useState([])
+    const getAllCategory = async ()=>{
+        const response = await axios.get("https://herbalbackend.herokuapp.com/api/categorie")
+        setData(response.data)
     }
-
-    rootSubmenuKeys = ['sub1', 'sub2', 'sub4'];
-
-    state = {
-        openKeys: ['sub1'],
-    };
-    onOpenChange = openKeys => {
-        const latestOpenKey = openKeys.find(
-            key => this.state.openKeys.indexOf(key) === -1
-        );
-        if (this.rootSubmenuKeys.indexOf(latestOpenKey) === -1) {
-            this.setState({ openKeys });
-        } else {
-            this.setState({
-                openKeys: latestOpenKey ? [latestOpenKey] : [],
-            });
-        }
-    };
-
-    render() {
         return (
             <Menu
                 mode="inline"
-                openKeys={this.state.openKeys}
-                onOpenChange={this.onOpenChange}>
-                {categories.map(category => (
-                    <Menu.Item key={category.id}>
-                        <a href={`/shop?category=${category.slug}`}>
-                            {category.name}
+                // openKeys={this.state.openKeys}
+                // onOpenChange={this.onOpenChange}>
+                >
+                {data.length>0?data.map(category => (
+                    <Menu.Item key={category.idCategoryClient}>
+                        <a href={`/shop?category=${category.idCategoryClient}`}>
+                            {category.nomCategory}
                         </a>
                     </Menu.Item>
-                ))}
+                )):null}
             </Menu>
         );
-    }
 }
-
 export default PanelCategories;

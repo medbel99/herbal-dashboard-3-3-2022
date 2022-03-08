@@ -7,16 +7,16 @@ const MobileHeaderActions = ({ auth, ecomerce }) => {
     const { cartItems } = ecomerce;
     return (
         <div className="navigation__right">
-            <Link href="/account/shopping-cart">
+            {/* <Link href="/account/shopping-cart"> */}
                 <a className="header__extra" href="#">
                     <i className="icon-bag2"></i>
                     <span>
                         <i>{cartItems ? cartItems.length : 0}</i>
                     </span>
                 </a>
-            </Link>
+            {/* </Link> */}
 
-            {auth.isLoggedIn && Boolean(auth.isLoggedIn) === true ? (
+            {/* {auth.isLoggedIn && Boolean(auth.isLoggedIn) === true ? (
                 <AccountQuickLinksMobile />
             ) : (
                 <div className="header__extra">
@@ -24,7 +24,7 @@ const MobileHeaderActions = ({ auth, ecomerce }) => {
                         <i className="icon-user"></i>
                     </Link>
                 </div>
-            )}
+            )} */}
         </div>
     );
 };
